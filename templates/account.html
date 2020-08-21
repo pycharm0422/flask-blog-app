@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    body{
+        padding:0px;
+        margin:0px;
+        box-sizing: border-box;
+
+    }
+    .right{
+        justify-content: right;
+        color:white;
+    }
+    
+   
+</style>
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      
+    <ul class="nav justify-content-center navbar navbar-dark bg-dark navbar-expand-sm">
+        <a class="navbar-brand" href="{{ url_for('account', user_id = current_user.id) }}">
+            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="30" height="30" alt="logo">
+            {{user.username}}
+          </a>
+        <li class="nav-item">
+          <a class="nav-link right" href="{{ url_for('home') }}">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link right" href="{{ url_for('myposts', user_id=current_user.id) }}">MY POSTS</a>
+        </li>
+        <li class="nav-item ml-auto">
+          <a class="nav-link btn btn-outline-danger" href="#">Logout</a>
+        </li>
+    </ul>
+    
+
+      <div class="container">
+          
+          <br><br><br>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+              {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+
+        <div class="media">
+            <img src="https://images.unsplash.com/24/Tea-Time.png?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=64&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=64" class="mr-3 rounded-circle" alt="...">
+            <div class="media-body">
+              <h5 class="mt-0">{{user.username}}</h5>
+              I am really intereted in programming i want to become a  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab est fuga ex quibusdam doloremque, a neque mollitia illum doloribus deserunt facilis libero magni. ethical hacker and i love islam.
+            </div>
+        </div>
+
+        <br><br>
+
+        {% if current_user.username == user.username %}
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>Update Your Account</legend>
+                <div class="form-group">
+                    {{ form.username.label(class='form-control-label') }}
+                    {{ form.username(class='form-control form-control-lg') }}
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.update(class='btn btn-outline-success') }}
+            </div>
+        </form>
+        {% endif %}
+
+        </div>
+
+
+
+    <!-- Optional JavaScript -->
+    
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>
